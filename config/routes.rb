@@ -9,7 +9,7 @@ CodeForAmerica::Application.routes.draw do
     get '/sign-out' => 'sessions#destroy', as: :sign_out
   end
 
-  resources :users, :path => 'members', only: [:show, :index, :edit, :update, :destroy]
+  resources :users, :path => 'members', only: [:show, :index, :edit, :update, :destroy], constraints: { protocol: "https" }
 
   # Redirects after switching users to members
   match "/users/sign_up"        => redirect("/members/sign_up")
