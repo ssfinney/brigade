@@ -24,10 +24,19 @@ class BrigadesController < ApplicationController
 
   def index
     @brigades = Brigade.all(:order => 'name')
-    respond_with(@brigades)
+    respond_to do |format|
+      format.html
+      format.json {
+        response.headers['Access-Control-Allow-Origin'] = '*'
+        render json: @brigades
+      }
+    end
   end
 
   def show
+    build_user
+    build_location
+    @source="brigade"
 
     @brigade_base = Brigade.find(params[:id], :include => :users)
 
@@ -57,7 +66,20 @@ class BrigadesController < ApplicationController
     render json: Brigade.all
   end
 
+  def brigade_location
+    render json: Brigade.find_by_id(params[:id])
+  end
+
   def application_locations
     render json: Brigade.find_by_id(params[:id]).deployed_applications
   end
+  
+  private 
+  def build_user
+    @user ||= User.new
+  end
+  def build_location
+    @location ||= Location.new
+  end
+
 end

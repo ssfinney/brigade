@@ -33,14 +33,21 @@ You'll also need to install Imagemagick
     cd brigade
     bundle install
     cp config/database.yml.example config/database.yml
+    bundle exec rake sunspot:solr:start
     rake db:create
     rake db:migrate
     rake db:seed
 
 ## Usage
-    bundle exec rake sunspot:solr:start
-    rails server
+    $ foreman start
+    Then open your browser to `http://localhost:5000`
 
+## Deployment
+In production, you will have to set the environment variable SECRET\_TOKEN to protect against attacks. To generate a token, cd into the project directory and run `rake secret`.
+
+For illustration, on Heroku setting an environment variable can be done with the following command:
+
+`heroku config:set SECRET_TOKEN=mynewlygeneratedtoken`
 
 ## How do users interact with system?
 As a user:
@@ -147,6 +154,31 @@ time of a major release, support for that Ruby version may be dropped.
 
 ## Credits
 [We Are Titans](http://www.wearetitans.net), Norfolk, VA.
+
+Thanks also to the following people who have contributed patches or helpful suggestions:
+
+* [annerynearson](http://github.com/annerynearson)
+* [arielcharney](http://github.com/arielcharney)
+* [Bret Fisher](http://github.com/BretFisher)
+* [David Caplan](http://github.com/davecap)
+* [David Michelson](http://github.com/daveism)
+* [Felix Sargent](http://github.com/fsargent)
+* [hannahyoung](http://github.com/hannahyoung)
+* [James McKinney](http://github.com/jpmckinney)
+* [Josh Nichols](http://github.com/technicalpickles)
+* [Josh Whitlock](http://github.com/jwhitlock)
+* [Juan-Pablo Velez](http://github.com/jpvelez)
+* [Mila Frerichs](http://github.com/milafrerichs)
+* [Marc Chung](http://github.com/mchung)
+* [Michael Sergio](http://github.com/michaelsergio)
+* [Noel Hidalgo](http://github.com/noneck)
+* [Philip Hale](http://github.com/hale)
+* [Philip Neustrom](http://github.com/philipn)
+* [Rebecca Williams](http://github.com/rebeccawilliams)
+* [Seth Vincent](http://github.com/sethvincent)
+* [Sean Knox](http://github.com/seanknox)
+* [Vanessa Hurst](http://github.com/DBNess)
+* [Will Green](http://github.com/hotgazpacho)
 
 ## Copyright
 Copyright (c) 2012 Code for America. See [LICENSE][] for details.

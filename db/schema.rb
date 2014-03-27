@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130719214202) do
+ActiveRecord::Schema.define(:version => 20131104040128) do
 
   create_table "applications", :force => true do |t|
     t.string "name"
@@ -37,7 +37,12 @@ ActiveRecord::Schema.define(:version => 20130719214202) do
     t.string   "group_url"
     t.string   "point_of_contact_address"
     t.integer  "location_id"
+    t.string   "meetup_url"
+    t.text     "meetup_json_data"
+    t.string   "fellowship"
   end
+
+  add_index "brigades", ["name"], :name => "unique_brigade_name", :unique => true
 
   create_table "brigades_users", :id => false, :force => true do |t|
     t.integer "user_id"
@@ -84,7 +89,7 @@ ActiveRecord::Schema.define(:version => 20130719214202) do
     t.string   "username"
     t.integer  "item"
     t.string   "table"
-    t.integer  "month"
+    t.integer  "month",      :limit => 2
     t.integer  "year",       :limit => 8
     t.datetime "created_at",              :null => false
     t.datetime "updated_at",              :null => false
@@ -129,6 +134,9 @@ ActiveRecord::Schema.define(:version => 20130719214202) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "linkedin_url"
+    t.string   "human_check"
+    t.boolean  "willing_to_organize"
+    t.boolean  "work_in_government"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
