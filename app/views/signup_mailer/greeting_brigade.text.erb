@@ -1,11 +1,18 @@
-Thanks for signing up for <%= @brigade.name %>. Your local leader will be in touch soon.
+Welcome new Brigade member!
 
-In the meantime, join <%= @brigade.name %>’s Meetup and check out their upcoming events:
+Thanks for signing up for <%= @brigade.name %>.
 
-<%= @brigade.meetup_url %>
-<%= @brigade.group_url %>
+You should join <%= @brigade.name %>’s Meetup and check out their upcoming events:
+
+  <% if @brigade.meetup_url.present? %>
+    <%= auto_link @brigade.meetup_url %>
+  <% end %>
+  <% if @brigade.group_url.present? %>
+    <%= auto_link @brigade.group_url %>
+  <% end %>
 
 Thanks again and see you soon.
 
+Brielle Plump - Communities Coordinator
+brielle@codeforamerica.org
 
-Brigade Support Team

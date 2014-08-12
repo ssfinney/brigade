@@ -1,10 +1,19 @@
-<p>Thanks for signing up for <%= @brigade.name %>. Your local leader will be in touch soon.</p>
+<h2>Welcome new Brigade member!</h2>
 
-<p>In the meantime, join <%= @brigade.name %>’s Meetup and check out their upcoming events:</p>
+<p>Thanks for signing up for <%= @brigade.name %>.</p>
 
-<%= auto_link @brigade.meetup_url %>
-<%= auto_link @brigade.group_url %>
+<p>You should join <%= @brigade.name %>’s Meetup and check out their upcoming events:</p>
+
+<ul>
+  <% if @brigade.meetup_url.present? %>
+    <li><%= auto_link @brigade.meetup_url %></li>
+  <% end %>
+  <% if @brigade.group_url.present? %>
+    <li><%= auto_link @brigade.group_url %></li>
+  <% end %>
+</ul>
 
 <p>Thanks again and see you soon.</p>
 
-<p>Brigade Support Team</p>
+<p><i>Brielle Plump - Communities Coordinator</i></p>
+<p><a href='mailto:brielle@codeforamerica.org'>brielle@codeforamerica.org</a></p>
